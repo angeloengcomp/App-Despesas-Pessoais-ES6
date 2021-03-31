@@ -1,5 +1,5 @@
 class Despesa {
-    constructor(dia,mes,ano,tipo,descricao,valor){
+    constructor(dia, mes, ano, tipo, descricao, valor) {
         this.dia = dia
         this.mes = mes
         this.ano = ano
@@ -11,40 +11,46 @@ class Despesa {
 
 class Bd {
 
-    constructor(){
-        let id = localStorage.getItem('id')
-        if(id === null){
-            localStorage.setItem('id',0)
+    constructor() {
+        let id = localStorage.getItem('id')//id recebe o valor de id no banco de dados
+        if (id === null) {
+            localStorage.setItem('id', 0)//veriica e caso n exista nenhum id no banco de dados, ele vai setar o primeiro id com 0
         }
     }
 
-    getProximoId(){
+    getProximoId() {
         let proximoID = localStorage.getItem('id')
+        console.log(parseInt(proximoID) + 1)
     }
 
-    gravar (d){
-        localStorage.setItem('despesa', JSON.stringify(d))
+    gravar(d) {
+      
+        let id = this.getProximoId()
+        localStorage.setItem(id, JSON.stringify(d))//despesa recebe um valor convertido para JSON
+        localStorage.setItem('id', id)
     }
 }
 
-function cadastrarDespesa(){
+let bd = new Bd()
+
+function cadastrarDespesa() {
 
     let dia = document.getElementById('dia')
     let mes = document.getElementById('mes')
-    let ano =   document.getElementById('ano')
-    let tipo =  document.getElementById('tipo')
-    let descricao =  document.getElementById('descricao')
-    let valor =  document.getElementById('valor')
+    let ano = document.getElementById('ano')
+    let tipo = document.getElementById('tipo')
+    let descricao = document.getElementById('descricao')
+    let valor = document.getElementById('valor')
 
-    let despesa = new Despesa (
-        dia.value, 
-        mes.value, 
-        ano.value, 
-        tipo.value, 
-        descricao.value, 
+    let despesa = new Despesa(
+        dia.value,
+        mes.value,
+        ano.value,
+        tipo.value,
+        descricao.value,
         valor.value
-        )
+    )
 
-    bg.gravar(despesa)
+    bd.gravar(despesa)
 }
 
