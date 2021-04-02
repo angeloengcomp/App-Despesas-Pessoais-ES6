@@ -7,6 +7,17 @@ class Despesa {
         this.descricao = descricao
         this.valor = valor
     }
+    validarDados(){
+        // retorna o valor de um determinado objeto
+        for (let i in this) {
+           //acessa cada um dos valores dos atributos como "this.ano"
+           if(this[i]==undefined ||this[i]==''||this[i]==null){
+               return false//caso alguma informação n exista, avisara a função validar dados
+           }
+           return true // informações completas> segue para incerssão no banco de dados
+        }
+
+    }
 }
 
 class Bd {
@@ -50,7 +61,14 @@ function cadastrarDespesa() {
         descricao.value,
         valor.value
     )
-
-    bd.gravar(despesa)
+    if(despesa.validarDados()){
+       // bd.gravar(despesa)//aloca os dados da despesa dentro do banco de dados do navegador
+        //msg de sucesso
+        $('#successGravacao').modal('show')
+    }else{
+        $('#erroGravacao').modal('show')//jquery para ativar o modal
+        //msg de erro
+    }
+  
 }
 
