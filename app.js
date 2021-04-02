@@ -20,7 +20,7 @@ class Bd {
 
     getProximoId() {
         let proximoID = localStorage.getItem('id')
-        console.log(parseInt(proximoID) + 1)
+        return parseInt(proximoID) + 1 //coloca os dados das despesas dentro do BD
     }
 
     gravar(d) {
