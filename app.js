@@ -40,6 +40,21 @@ class Bd {
         localStorage.setItem(id, JSON.stringify(d))//despesa recebe um valor convertido para JSON
         localStorage.setItem('id', id)
     }
+    recuperarTodosRegistros(){
+        //array de despesas
+        let despesas= Array()
+
+        let id = localStorage.getItem('id')
+        // recuperar todas as despesas cadastradas em localStorage
+        for(let i = 1; i <= id; i++){
+            //recuperar a despesa e em seguida converte-la atraves do metodo JSON.parseInt()
+            let despesa = JSON.parseInt(localStorage.getItem(i))
+            console.log(i, despesa)
+            //o metodo push pega cada informação recebida e adiciona em um local do array despesas
+            despesas.push(despesa)
+        }
+
+     }
 }
 
 let bd = new Bd()
@@ -64,11 +79,30 @@ function cadastrarDespesa() {
     if(despesa.validarDados()){
        // bd.gravar(despesa)//aloca os dados da despesa dentro do banco de dados do navegador
         //msg de sucesso
-        $('#successGravacao').modal('show')
+        $('#modalRegistraDespesa').modal('show')
+        //as trocas de valores abaixo servem para dar uma dinamica na troca de informações do modal
+        document.getElementById('text-description').innerHTML='Despesa cadastrada'
+        document.getElementById('modal-titulo-div').className='modal-header text-success'
+        document.getElementById('modal-conteudo').innerHTML='Despesa registrada com sucesso.'
+        document.getElementById('modal-botao').className='btn btn-success'
+        document.getElementById('modal-botao').innerHTML='Voltar'
+
     }else{
-        $('#erroGravacao').modal('show')//jquery para ativar o modal
+        $('#modalRegistraDespesa').modal('show')//jquery para ativar o modal
         //msg de erro
+        //as trocas de valores abaixo servem para dar uma dinamica na troca de informações do modal
+        document.getElementById('text-description').innerHTML='Erro na inclusão'
+        document.getElementById('modal-titulo-div').className='modal-header text-danger'
+        document.getElementById('modal-conteudo').innerHTML='Preencha todos os campos'
+        document.getElementById('modal-botao').className='btn btn-danger'
+        document.getElementById('modal-botao').innerHTML='Voltar e Tentar novamente'
     }
   
+}
+
+function carregaListaDespesas(){
+    bd.recuperarTodosRegistros()
+
+
 }
 
