@@ -62,6 +62,8 @@ class Bd {
           
         }
 
+        return registros 
+
      }
 }
 
@@ -109,7 +111,9 @@ function cadastrarDespesa() {
 }
 
 function carregaListaDespesas(){
-    bd.recuperarTodosRegistros()
+    let despesas = Array ()
+
+    despesas = bd.recuperarTodosRegistros()
 
 
 }
