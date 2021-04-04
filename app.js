@@ -50,8 +50,16 @@ class Bd {
             //recuperar a despesa e em seguida converte-la atraves do metodo JSON.parseInt()
             let despesa = JSON.parseInt(localStorage.getItem(i))
             console.log(i, despesa)
+            
+
+            //verificar se existe a possibilidade de haver indices que foram pulados/removidos nestes casos, nos vamos pular esses indices
+            if(despesa===null){
+                continue            
+            }  
+            
             //o metodo push pega cada informação recebida e adiciona em um local do array despesas
             despesas.push(despesa)
+          
         }
 
      }
