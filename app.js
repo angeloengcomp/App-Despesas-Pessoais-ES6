@@ -115,6 +115,14 @@ function carregaListaDespesas(){
 
     despesas = bd.recuperarTodosRegistros()
 
+    let listaDespesas = document.getElementById('listaDespesas')
+
+            {/* <tr>
+                <td>10/01/2021</td>
+                <td>Alimentação</td>
+                <td>Supermercado</td>
+                <td>R$ 429,90</td>
+              </tr>  */}
 
 }
 
