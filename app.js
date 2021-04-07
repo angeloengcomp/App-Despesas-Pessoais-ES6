@@ -99,7 +99,17 @@ function cadastrarDespesa() {
 		document.getElementById('modal_btn').className = 'btn btn-success'
 
 		//dialog de sucesso
-		$('#modalRegistraDespesa').modal('show') 
+		$('#modalRegistraDespesa').modal('show')
+		
+		
+		//limpa os valores de dentro dos campos
+		ano.value = ''
+		mes.value = ''
+		dia.value=''
+		tipo.value=''
+		descricao.value=''
+		valor.value=''
+
 		
 
 	} else {
@@ -112,6 +122,8 @@ function cadastrarDespesa() {
 
 		//dialog de erro
 		$('#modalRegistraDespesa').modal('show') 
+
+	
 	}
 }
 
