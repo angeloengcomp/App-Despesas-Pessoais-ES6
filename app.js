@@ -67,7 +67,50 @@ class Bd {
 	}
 
 	pesquisar(despesa){
+
+		let despesasFiltradas = Array()
+		despesasFiltradas = this.recuperarTodosRegistros()
+		console.log(despesasFiltradas);
 		console.log(despesa)
+
+		//ano
+		if(despesa.ano != ''){
+			console.log("filtro de ano");
+			despesasFiltradas = despesasFiltradas.filter(d => d.ano == despesa.ano)
+		}
+			
+		//mes
+		if(despesa.mes != ''){
+			console.log("filtro de mes");
+			despesasFiltradas = despesasFiltradas.filter(d => d.mes == despesa.mes)
+		}
+
+		//dia
+		if(despesa.dia != ''){
+			console.log("filtro de dia");
+			despesasFiltradas = despesasFiltradas.filter(d => d.dia == despesa.dia)
+		}
+
+		//tipo
+		if(despesa.tipo != ''){
+			console.log("filtro de tipo");
+			despesasFiltradas = despesasFiltradas.filter(d => d.tipo == despesa.tipo)
+		}
+
+		//descricao
+		if(despesa.descricao != ''){
+			console.log("filtro de descricao");
+			despesasFiltradas = despesasFiltradas.filter(d => d.descricao == despesa.descricao)
+		}
+
+		//valor
+		if(despesa.valor != ''){
+			console.log("filtro de valor");
+			despesasFiltradas = despesasFiltradas.filter(d => d.valor == despesa.valor)
+		}
+
+		
+		console.log(despesasFiltradas);
 
 	}
 }
@@ -104,19 +147,15 @@ function cadastrarDespesa() {
 		document.getElementById('modal_btn').className = 'btn btn-success'
 
 		//dialog de sucesso
-		$('#modalRegistraDespesa').modal('show')
-		
-		
-		//limpa os valores de dentro dos campos
-		ano.value = ''
+		$('#modalRegistraDespesa').modal('show') 
+
+		ano.value = '' 
 		mes.value = ''
-		dia.value=''
-		tipo.value=''
-		descricao.value=''
-		valor.value=''
-
+		dia.value = ''
+		tipo.value = ''
+		descricao.value = ''
+		valor.value = ''
 		
-
 	} else {
 		
 		document.getElementById('modal_titulo').innerHTML = 'Erro na inclusão do registro'
@@ -127,8 +166,6 @@ function cadastrarDespesa() {
 
 		//dialog de erro
 		$('#modalRegistraDespesa').modal('show') 
-
-	
 	}
 }
 
@@ -181,20 +218,20 @@ function carregaListaDespesas() {
 
  }
 
-
- //funcao responsavel por pesquisar a despesa
+ 
  function pesquisarDespesa(){
-	//  console.log('pesquisar despesa')
-	let ano = document.getElementById('ano').value
-	let dia = document.getElementById('dia').value
-	let mes = document.getElementById('mes').value
-	let tipo = document.getElementById('mes').value
-	let descricao = document.getElementById('descricao').value
-	let valor = document.getElementById('valor').value
+	 
+	let ano  = document.getElementById("ano").value
+	let mes = document.getElementById("mes").value
+	let dia = document.getElementById("dia").value
+	let tipo = document.getElementById("tipo").value
+	let descricao = document.getElementById("descricao").value
+	let valor = document.getElementById("valor").value
 
-	let despesa = new Despesa (ano, mes, dia, tipo, descricao, valor)
+	let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
 
-	bd.pesquisar(despesa)
+     bd.pesquisar(despesa);
 
 
+	
  }
